@@ -1,0 +1,21 @@
+groups:
+- name: HighLoad
+  rules:
+
+  - alert: CpuHighLoad
+    expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{job="node",mode="idle"}[1m])) * 100) > 75
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} is under high load."
+      description: "{{ $labels.instance }} cpu under high load more than 75%"
+
+  - alert: MemHighLoad
+    expr: 100 * (1 - ((avg_over_time(node_memory_MemFree_bytes{job="node-slave"}[5m]) + avg_over_time(node_memory_Cached_bytes{job="node-slave"}[5m]) + avg_over_time(node_memory_Buffers_bytes{job="node-slave"}[5m])) / (node_memory_MemTotal_bytes{job="node-slave"}))) > 80
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} is under high load."
+      description: "{{ $labels.instance }} memory under high load more than 80%"

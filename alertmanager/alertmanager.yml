@@ -1,0 +1,12 @@
+global:
+  slack_api_url: 'slack_url'
+
+route:
+  receiver: 'slack'
+  group_by: [alertname, job]
+
+receivers:
+- name: 'slack'
+  slack_configs:
+  - channel: '#devops'
+    text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"

@@ -7,11 +7,12 @@ StartLimitIntervalSec=500
 StartLimitBurst=5
 
 [Service]
+User=node_exporter
+Group=node_exporter
 Type=simple
 Restart=on-failure
 RestartSec=5s
-ExecStart=/usr/local/bin/node_exporter \
-    --collector.logind
+ExecStart=/usr/local/bin/node_exporter
 
 [Install]
 WantedBy=multi-user.target

@@ -5,4 +5,4 @@ sudo apt remove docker-compose -y
 sudo wget https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64
 sudo mv docker-compose-linux-x86_64 /usr/bin/docker-compose
 sudo chmod +x /usr/bin/docker-compose
-sudo git clone https://github.com/Wultur/prometheus-25.git
+sudo git clone https://github.com/Wultur/prometheus.git
